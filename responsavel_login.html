@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login do Responsável - ProfEduca</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/img/747086.png" type="image/x-icon">
+</head>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card p-4 shadow" style="width: 350px;">
+    <h3 class="text-center mb-4">Área do Responsável</h3>
+
+    <form id="formResponsavel">
+      <div class="mb-3">
+        <label class="form-label">CPF</label>
+        <input type="text" id="cpfResponsavel" class="form-control" placeholder="Digite seu CPF">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input type="password" id="senhaResponsavel" class="form-control" placeholder="Digite sua senha">
+      </div>
+
+      <p id="erroResponsavel" class="text-danger text-center d-none">CPF ou senha incorretos!</p>
+
+      <button type="submit" class="btn btn-primary w-100">Entrar</button>
+
+      <a href="index.html">
+        <button type="button" class="btn btn-danger w-100 mt-2">Sair</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.getElementById("formResponsavel").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const cpf = document.getElementById("cpfResponsavel").value;
+    const senha = document.getElementById("senhaResponsavel").value;
+
+    if (cpf === "45988631" && senha === "12345") {
+      window.location.href = "responsavel_dashboard.html";
+    } else {
+      document.getElementById("erroResponsavel").classList.remove("d-none");
+    }
+  });
+</script>
+
+</body>
+
+</html>

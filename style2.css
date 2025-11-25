@@ -1,0 +1,25 @@
+.menu-lateral {
+width: 220px;
+height: 100vh;
+background: #0d6efd;
+color: white;
+padding: 20px;
+position: fixed;
+}
+
+.menu-lateral a {
+color: white;
+display: block;
+padding: 10px 0;
+text-decoration: none;
+font-weight: 500;
+}
+
+.menu-lateral a:hover {
+text-decoration: underline;
+}
+
+.conteudo {
+margin-left: 240px;
+padding: 20px;
+}

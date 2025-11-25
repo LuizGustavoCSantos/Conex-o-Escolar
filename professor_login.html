@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login do Professor - ProfEduca</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/img/747086.png" type="image/x-icon">
+</head>
+
+<body class="bg-light">
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4 shadow" style="width: 350px;">
+      <h3 class="text-center mb-4">Área do Professor</h3>
+
+      <form id="formProfessor">
+        <div class="mb-3">
+          <label class="form-label">Usuário</label>
+          <input type="text" id="userProfessor" class="form-control" placeholder="Digite seu usuário">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Senha</label>
+          <input type="password" id="senhaProfessor" class="form-control" placeholder="Digite sua senha">
+        </div>
+
+        <p id="erroProfessor" class="text-danger text-center d-none">Usuário ou senha incorretos!</p>
+
+        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+      </form>
+
+      <a href="index.html">
+        <button type="button" class="btn btn-danger w-100 mt-2">Sair</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("formProfessor").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const user = document.getElementById("userProfessor").value;
+      const senha = document.getElementById("senhaProfessor").value;
+
+      if (user === "professor" && senha === "12345") {
+        window.location.href = "professor_dashboard.html";
+      } else {
+        document.getElementById("erroProfessor").classList.remove("d-none");
+      }
+    });
+  </script>
+</body>
+
+</html>
