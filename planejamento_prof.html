@@ -13,13 +13,21 @@
     <div class="container">
         <h2 class="mb-4">📘 Publicar Planejamento</h2>
 
-        <form>
-            <label class="form-label">Digite o planejamento da semana:</label>
-            <textarea class="form-control" rows="6"></textarea>
+       <form onsubmit="salvarPlan(); return false;">
+    <label class="form-label">Digite o planejamento da semana:</label>
+    <textarea class="form-control" rows="6" id="txtPlan"></textarea>
 
-            <button class="btn btn-primary w-100 mt-3">Salvar Planejamento</button>
-        </form>
-
+    <button class="btn btn-primary w-100 mt-3">Salvar Planejamento</button>
+   </form>
+ 
+    <script>
+    function salvarPlan() {
+    let texto = document.getElementById("txtPlan").value;
+    localStorage.setItem("planejamento_prof", texto);
+    alert("Planejamento enviado com sucesso!"); 
+    }
+    </script>
+    
         <a href="professor_dashboard.html" class="btn btn-secondary w-100 mt-3">Voltar</a>
     </div>
 

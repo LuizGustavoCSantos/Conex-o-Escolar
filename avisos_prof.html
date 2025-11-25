@@ -13,12 +13,21 @@
     <div class="container">
         <h2 class="mb-4">🔔 Enviar Aviso</h2>
 
-        <form>
-            <label class="form-label">Aviso:</label>
-            <textarea class="form-control" rows="5"></textarea>
+        <form onsubmit="salvarAviso(); return false;">
+    <label class="form-label">Aviso:</label>
+    <textarea class="form-control" rows="5" id="txtAviso"></textarea>
 
-            <button class="btn btn-primary w-100 mt-3">Enviar Aviso</button>
-        </form>
+    <button class="btn btn-primary w-100 mt-3">Enviar Aviso</button>
+</form>
+
+<script>
+function salvarAviso() {
+    let aviso = document.getElementById("txtAviso").value;
+    localStorage.setItem("avisos_prof", aviso);
+    alert("Aviso enviado!");
+}
+</script>
+
 
         <a href="professor_dashboard.html" class="btn btn-secondary w-100 mt-3">Voltar</a>
     </div>

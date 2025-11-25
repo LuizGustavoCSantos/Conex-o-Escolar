@@ -11,12 +11,27 @@
 
 <body class="bg-light p-4">
 
-    <div class="container">
-        <h2 class="mb-4">📷 Fotos da Turma</h2>
+   <div class="row" id="listaFotos"></div>
 
-        <div class="row">
-            <p>As fotos enviadas pelo professor aparecerão aqui.</p>
+<script>
+let fotos = JSON.parse(localStorage.getItem("fotos_prof") || "[]");
+let area = document.getElementById("listaFotos");
+
+if (fotos.length === 0) {
+    area.innerHTML = "<p>Nenhuma foto enviada ainda.</p>";
+}
+
+fotos.forEach(f => {
+    area.innerHTML += `
+        <div class="col-md-4 col-12 mb-3">
+            <div class="card p-2 shadow">
+                <img src="${f.imagem}" class="img-fluid rounded">
+                <p class="mt-2">${f.legenda}</p>
+            </div>
         </div>
+    `;
+});
+</script>
 
         <a href="responsavel_dashboard.html" class="btn btn-secondary w-100 mt-3">Voltar</a>
     </div>

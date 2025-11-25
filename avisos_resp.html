@@ -12,9 +12,15 @@
     <div class="container">
         <h2 class="mb-4">🔔 Avisos</h2>
 
-        <div class="card p-3 shadow">
-            <p>Avisos do professor aparecerão aqui.</p>
-        </div>
+       <div class="card p-3 shadow">
+    <p id="exibirAviso"></p>
+    </div>
+
+        <script>
+        let aviso = localStorage.getItem("avisos_prof");
+        document.getElementById("exibirAviso").innerText =
+        aviso ? aviso : "Nenhum aviso enviado ainda.";
+        </script>
 
         <a href="responsavel_dashboard.html" class="btn btn-secondary w-100 mt-3">Voltar</a>
     </div>

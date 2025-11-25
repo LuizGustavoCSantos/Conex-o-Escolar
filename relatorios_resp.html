@@ -14,8 +14,15 @@
     <h2 class="mb-4">📑 Relatórios</h2>
 
     <div class="card p-3 shadow">
-      <p>Relatórios do professor aparecerão aqui.</p>
+        <p id="exibirRel"></p>
     </div>
+
+    <script>
+    let rel = localStorage.getItem("relatorios_prof");
+    document.getElementById("exibirRel").innerText =
+      rel ? rel : "Nenhum relatório enviado ainda.";
+    </script>
+
 
     <a href="responsavel_dashboard.html" class="btn btn-secondary w-100 mt-3">Voltar</a>
   </div>

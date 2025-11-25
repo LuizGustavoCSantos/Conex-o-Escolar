@@ -13,18 +13,96 @@
     <div class="container">
         <h2 class="mb-4">📷 Enviar Fotos</h2>
 
-        <form>
+        <!-- FORMULÁRIO (igual ao seu) -->
+        <form onsubmit="salvarFoto(); return false;">
             <label class="form-label">Selecione uma foto:</label>
-            <input type="file" class="form-control">
+            <input type="file" class="form-control" id="foto">
 
             <label class="form-label mt-3">Legenda:</label>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" id="legenda">
 
             <button class="btn btn-primary w-100 mt-3">Enviar Foto</button>
         </form>
 
-        <a href="professor_dashboard.html" class="btn btn-secondary w-100 mt-3">Voltar</a>
+        <hr class="my-4">
+
+        <!-- LISTA DE FOTOS -->
+        <h3 class="mb-3">Fotos Enviadas</h3>
+        <div class="row" id="listaFotos"></div>
+
+        <a href="professor_dashboard.html" class="btn btn-secondary w-100 mt-4">Voltar</a>
     </div>
 
 </body>
+
+<!-- SCRIPT COMPLETO -->
+<script>
+function salvarFoto() {
+    let file = document.getElementById("foto").files[0];
+    let legenda = document.getElementById("legenda").value;
+
+    if (!file) {
+        alert("Selecione uma foto!");
+        return;
+    }
+
+    let reader = new FileReader();
+    reader.onload = function() {
+        let fotos = JSON.parse(localStorage.getItem("fotos_prof") || "[]");
+
+        fotos.push({
+            imagem: reader.result,
+            legenda: legenda
+        });
+
+        localStorage.setItem("fotos_prof", JSON.stringify(fotos));
+        alert("Foto enviada!");
+
+        carregarFotos(); // atualiza lista imediatamente
+    }
+
+    reader.readAsDataURL(file);
+}
+
+function carregarFotos() {
+    let fotos = JSON.parse(localStorage.getItem("fotos_prof") || "[]");
+    let area = document.getElementById("listaFotos");
+    area.innerHTML = "";
+
+    if (fotos.length === 0) {
+        area.innerHTML = "<p class='text-muted'>Nenhuma foto enviada ainda.</p>";
+        return;
+    }
+
+    fotos.forEach((f, index) => {
+        area.innerHTML += `
+            <div class="col-md-4 col-12 mb-3">
+                <div class="card p-2 shadow">
+                    <img src="${f.imagem}" class="img-fluid rounded">
+                    <p class="mt-2">${f.legenda}</p>
+
+                    <button class="btn btn-danger w-100 mt-2"
+                            onclick="removerFoto(${index})">
+                        Remover Foto
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+}
+
+function removerFoto(index) {
+    let fotos = JSON.parse(localStorage.getItem("fotos_prof") || "[]");
+
+    if (!confirm("Tem certeza que deseja remover esta foto?")) return;
+
+    fotos.splice(index, 1); // remove pelo índice
+    localStorage.setItem("fotos_prof", JSON.stringify(fotos));
+    carregarFotos();
+}
+
+// carrega fotos ao abrir a página
+window.onload = carregarFotos;
+</script>
+
 </html>
